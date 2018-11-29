@@ -1,9 +1,6 @@
-// Temporary workaround for bug in expo-2d-context which depends on Expo global
-global.Expo = { Asset: { fromModule: () => null }};
-
+import React from 'react';
 import { GLView } from 'expo-gl';
 import Expo2DContext from 'expo-2d-context';
-import React from 'react';
 
 export default class App extends React.Component {
   render() {
@@ -11,7 +8,7 @@ export default class App extends React.Component {
       <GLView style={{ flex: 1 }} onContextCreate={this._onGLContextCreate} />
     );
   }
-  _onGLContextCreate = gl => {
+  _onGLContextCreate = async gl => {
     var ctx = new Expo2DContext(gl);
     ctx.translate(50, 200);
     ctx.scale(4, 4);
@@ -37,5 +34,13 @@ export default class App extends React.Component {
     ctx.arc(70, 20, 10, 0.5 * Math.PI, 2.5 * Math.PI);
     ctx.stroke();
     ctx.flush();
+
+
+    // Doesn't work currently
+    // await ctx.initializeText();
+    // ctx.fillStyle = 'blue';
+    // ctx.font = 'italic 72pt sans-serif';
+    // ctx.fillText('Hey Galaxy', 10, 200);
+    // ctx.flush();
   };
 }
