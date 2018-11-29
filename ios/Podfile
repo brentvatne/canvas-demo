@@ -1,0 +1,45 @@
+# Uncomment the next line to define a global platform for your project
+platform :ios, '10.0'
+
+target 'CanvasDemo' do
+  # use_frameworks!
+
+  pod 'React', :path => '../node_modules/react-native', :subspecs => [
+    'Core',
+    'CxxBridge', # Include this for RN >= 0.47
+    'DevSupport', # Include this to enable In-App Devmenu if RN >= 0.43
+    'RCTText',
+    'RCTNetwork',
+    'RCTWebSocket', # Needed for debugging
+    'RCTAnimation', # Needed for FlatList and animations running on native UI thread
+    # Add any other subspecs you want to use in your project
+  ]
+  pod 'yoga', :path => '../node_modules/react-native/ReactCommon/yoga'
+  pod 'DoubleConversion', :podspec => '../node_modules/react-native/third-party-podspecs/DoubleConversion.podspec'
+  pod 'glog', :podspec => '../node_modules/react-native/third-party-podspecs/glog.podspec'
+  pod 'Folly', :podspec => '../node_modules/react-native/third-party-podspecs/Folly.podspec'
+
+  # Expo
+  pod 'EXCore', path: '../node_modules/expo-core/ios'
+  pod 'EXReactNativeAdapter', path: '../node_modules/expo-react-native-adapter/ios', inhibit_warnings: true
+  pod 'EXFileSystem', path: '../node_modules/expo-file-system/ios'
+  pod 'EXFileSystemInterface', path: '../node_modules/expo-file-system-interface/ios'
+  pod 'EXCameraInterface', path: '../node_modules/expo-camera-interface/ios'
+  pod 'EXGL', path: '../node_modules/expo-gl/ios'
+  pod 'EXGL-CPP', path: '../node_modules/expo-gl-cpp/cpp'
+
+  target 'CanvasDemoTests' do
+    inherit! :search_paths
+  end
+
+end
+
+target 'CanvasDemo-tvOS' do
+  # use_frameworks!
+
+  target 'CanvasDemo-tvOSTests' do
+    inherit! :search_paths
+    # Pods for testing
+  end
+
+end
